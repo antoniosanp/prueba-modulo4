@@ -2,7 +2,7 @@ transaction_id,date,customer_name,customer_email,customer_address,customer_phone
 TXN-2001,2024-02-21,Andres Lopez,andres.lopez@gmail.com,Cra 45 #12-90 Medellin,3012223344,Accessories,MSE-LOG-502,Mouse Logitech M502,150000,3,450000,TechWorld SAS,ventas@techworld.com
 TXN-2001,2024-02-21,Andres Lopez,andres.lopez@gmail.com,Cra 45 #12-90 Medellin,3012223344,Home,CLK-WAL-05,Reloj de Pared,80000,1,80000,TechWorld SAS,ventas@techworld.com
 TXN-2001,2024-02-21,Andres Lopez,andres.lopez@gmail.com,Cra 45 #12-90 Medellin,3012223344,Electronics,TBL-SAM-10,"Tablet Samsung 10""",1200000,3,3600000,TechWorld SAS,ventas@techworld.com
-TXN-2002,2024-02-24,Natalia Vega,natalia.vega@mail.com,Cra 7 #45-12 Medellin,3089990011,Electronics,LPT-DEL-001,Laptop Dell Inspiron,3200000,1,3200000,TechWorld SAS,ventas@techworld.com
+TXN-2002,2024-02-24,Natalia Vega,natalia.vega@mail.com,Cra 7 #45-12 Medellin,3089990011,Electronics,LPT-DEL-001,Laptop Del1l Inspiron,3200000,1,3200000,TechWorld SAS,ventas@techworld.com
 TXN-2002,2024-02-24,Natalia Vega,natalia.vega@mail.com,Cra 7 #45-12 Medellin,3089990011,Home,CLK-WAL-05,Reloj de Pared,80000,3,240000,TechWorld SAS,ventas@techworld.com
 TXN-2002,2024-02-24,Natalia Vega,natalia.vega@mail.com,Cra 7 #45-12 Medellin,3089990011,Electronics,MON-LG-27,Monitor LG 27 pulgadas,850000,3,2550000,TechWorld SAS,ventas@techworld.com
 TXN-2002,2024-02-24,Natalia Vega,natalia.vega@mail.com,Cra 7 #45-12 Medellin,3089990011,Accessories,MSE-LOG-502,Mouse Logitech M502,150000,1,150000,TechWorld SAS,ventas@techworld.com
