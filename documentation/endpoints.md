@@ -14,11 +14,14 @@ supplier Add: POST http://localhost:3000/api/suppliers/add
 
  {
     "supplier_email": "prueba@correo.com",
-    "supplier_name": "prueba 
+    "supplier_name": "prueba"
 }
 
 supplier Delete: DELETE http://localhost:3000/api/suppliers/delete/:id
 
-supplier Update http://localhost:3000/api/suppliers/update/:id"
+supplier Update: PUT http://localhost:3000/api/suppliers/update/:id"
 
- {"supplier_name": "elcambio"}
+ {
+    "supplier_name": "elcambio",
+    "supplier_email": "nuevo@email.com"
+ }

@@ -1,0 +1,11 @@
+1 a product has a category, a category can belong to many products
+
+2 one supplier can sell many products, one product can be sold by many suppliers
+
+3 a customer can make many orders, an order can have many products
+
+---
+
+1: is solved with a relationship from 1 to n (category - products)
+
+2 and 3: resolved with the intermediate table (transactions)
