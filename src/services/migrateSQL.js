@@ -34,9 +34,12 @@ export const migrateCSV = async () => {
         RETURNING order_id`,
         [row.transaction_id, row.date]
       )
-      const order_id = ordersRes.rows[0].order_id;
 
-      
+       
+        
+      const order_id = ordersRes.rows[0].order_id;
+     
+
       // CUSTOMER
       const customersRes = await client.query(`INSERT INTO customers
         (customer_email, customer_name, customer_address, customer_phone)
@@ -45,13 +48,20 @@ export const migrateCSV = async () => {
         DO UPDATE SET customer_name = EXCLUDED.customer_name
         RETURNING customer_id`, [row.customer_email, row.customer_name, row.customer_address, row.customer_phone])
      
+      const customer_id = customersRes.rows[0].customer_id
+     
+
+
       //CATEGORIES
       const categoriesRes = await client.query(`INSERT INTO categories
         (category_name)
         VALUES ($1)
         ON CONFLICT (category_name)
-        DO NOTHING
+        DO UPDATE SET category_name = EXCLUDED.category_name
         RETURNING category_id`, [row.product_category])
+
+      const category_id = categoriesRes.rows[0].category_id;
+     
 
       //SUPPLIERS
       const suppliersRes = await client.query(`INSERT INTO suppliers
@@ -60,19 +70,31 @@ export const migrateCSV = async () => {
         ON CONFLICT (supplier_email)
         DO UPDATE SET supplier_name = EXCLUDED.supplier_name
         RETURNING supplier_id`,
-        [row.supplier_email, row.supplier_name]
-      )
+        [row.supplier_email, row.supplier_name])
+
+      const supplier_id = suppliersRes.rows[0].supplier_id
+     
 
       //PRODUCTS
-      const productsRes = await client.query(`INSERT INTO suppliers
-        (supplier_email, supplier_name)
-        VALUES ($1, $2)
-        ON CONFLICT (supplier_email)
-        DO UPDATE SET supplier_name = EXCLUDED.supplier_name
-        RETURNING supplier_id`,
-        [row.supplier_email, row.supplier_name]
+      const productsRes = await client.query(`INSERT INTO products
+        (product_name, unit_price, product_sku, category_id)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (product_sku)
+        DO UPDATE SET product_name = EXCLUDED.product_name
+        RETURNING product_id`,
+        [row.product_name, row.unit_price, row.product_sku, category_id]
       )
+      const product_id = productsRes.rows[0].product_id
 
+      //TRANSACTIONS
+
+      const transactionsRed = client.query(`INSERT INTO transactions
+        (order_id, customer_id, supplier_id, product_id, quantity, total_line_value)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        ON CONFLICT (transaction_id)
+        DO NOTHING
+        `,
+        [order_id, customer_id, supplier_id , product_id, row.quantity, row.total_line_value])
 
     }
 

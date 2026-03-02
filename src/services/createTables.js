@@ -63,7 +63,21 @@ ON UPDATE NO ACTION ON DELETE NO ACTION;`)
 console.log("✅ Tables created");
 }
 
-export const deleteTables = async () =>{
-    pool.query()
-    console.log(" 0.0 Tables deleted")
+export const deleteTables = async () => {
+    
+    try {
+    
+    await pool.query(`DELETE FROM transactions`)
+    await pool.query(`DELETE FROM products`)
+    await pool.query(`DELETE FROM orders`)
+    await pool.query(`DELETE FROM categories`)
+    await pool.query(`DELETE FROM suppliers`)
+	await pool.query(`DELETE FROM customers`) 
+    console.log("eliminado exitoso")
+    }
+     catch (error) {
+         console.log("eliminado fallido");
+         console.error(error)
+    }
+   
 }
