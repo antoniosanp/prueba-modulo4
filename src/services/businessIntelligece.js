@@ -14,3 +14,16 @@ export const getBestSuppliers = async () => {
   `);
   return result.rows;
 };
+
+export const getCustomerHistory = async (id) => {
+  const result = await pool.query(`select  c.customer_name , o.order_id  as order_id, o.order_date , t.total_line_value  , p.product_name  as product_name, t.quantity, t.total_line_value 
+    from "orders" o
+    join "transactions" t on o.order_id  = t.order_id
+    join customers c on c.customer_id  = t.customer_id 
+    join products p on t.product_id = p.product_id 
+            where t.customer_id = $1
+            order by o.order_date  desc;`,[id]);
+  return result.rows;
+};
+
+

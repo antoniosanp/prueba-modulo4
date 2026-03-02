@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getBestSuppliersEndpoint } from "../controller/businessIntelligence.controller.js";
+import { getBestSuppliersEndpoint, getCustomerHistoryEndpoint } from "../controller/businessIntelligence.controller.js";
 
 const router = Router()
 
 router.get("/best", getBestSuppliersEndpoint)
+router.get("/history/:id", getCustomerHistoryEndpoint)
 
 
 
