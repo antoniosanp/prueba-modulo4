@@ -1,7 +1,8 @@
 import { pool } from "../config/db.js";
 
 
-//GET all suppliers
+//GET all suppliers 
+//-----------------------------------------------------------
 
 export const getAllSuppliers = async () => {
   const result = await pool.query(`
@@ -10,7 +11,8 @@ export const getAllSuppliers = async () => {
   return result.rows;
 };
 
-// GET supplier by email
+// GET supplier by email 
+//-----------------------------------------------------------
 export const getSupplierByEmail = async (email) => {
   const result = await pool.query(`
     SELECT * FROM suppliers s
@@ -20,6 +22,7 @@ export const getSupplierByEmail = async (email) => {
 };
 
 // CREATE supplier
+//-----------------------------------------------------------
 export const createSupplier = async (supplierData) => {
   const { supplier_email, supplier_name } = supplierData;
   const result = await pool.query(
@@ -30,17 +33,20 @@ export const createSupplier = async (supplierData) => {
 };
 
 // UPDATE supplier
+//-----------------------------------------------------------
 export const updateSupplier = async (id, supplierData) => {
-  const { supplier_name } = supplierData;
-  const result = await pool.query(`UPDATE suppliers 
-    SET supplier_name = $1, 
-    WHERE supplier_id = $2 RETURNING *`,
-    [supplier_name, id]
+  const { supplier_name, supplier_email } = supplierData;
+  const result = await pool.query(`UPDATE suppliers
+    SET supplier_name = $1,
+    supplier_email = $2 
+    WHERE supplier_id = $3 RETURNING *`,
+    [supplier_name,supplier_email ,id]
   );
   return result.rows[0];
 };
 
 // DELETE supplier
+//-----------------------------------------------------------
 export const deleteSupplier = async (id) => {
   const result = await pool.query(
     "DELETE FROM suppliers WHERE supplier_id = $1 RETURNING *",
