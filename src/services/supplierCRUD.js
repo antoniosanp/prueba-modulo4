@@ -11,10 +11,10 @@ export const getAllSuppliers = async () => {
 };
 
 // GET supplier by email
-export const getSupplierById = async (email) => {
+export const getSupplierByEmail = async (email) => {
   const result = await pool.query(`
     SELECT * FROM suppliers s
-    WHERE s.supplier_id =  $1 
+    WHERE s.supplier_email = $1 
   `, [email]);
   return result.rows[0];
 };
