@@ -1,0 +1,22 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: postgres_test
+    restart: always
+    environment:
+      POSTGRES_USER: antonio
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: orders
+    ports:
+      - "5435:5432"
+
+  mongo:
+    image: mongo:7
+    container_name: mongo_test
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: antonio
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    ports:
+      - "27020:27017"
