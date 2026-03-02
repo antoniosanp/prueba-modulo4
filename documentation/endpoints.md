@@ -1,8 +1,17 @@
+--------------------------------------------------------------
+TABLES
+---------------------------------------------------------------
 
 create tables: POST http://localhost:3000/api/tables/create
 migrate SQL: POST http://localhost:3000/api/tables/migrate
 clear SQL: POST http://localhost:3000/api/tables/clearTables
 migrate Mongo: POST http://localhost:3000/api/mongo/migrate
+--------------------------------------------------------------
+
+
+--------------------------------------------------------------
+SUPPLIER CRUD
+--------------------------------------------------------------
 
 Suppliers get All: GET http://localhost:3000/api/suppliers/get
 
@@ -25,3 +34,9 @@ supplier Update: PUT http://localhost:3000/api/suppliers/update/:id"
     "supplier_name": "elcambio",
     "supplier_email": "nuevo@email.com"
  }
+
+ -----------------------------------------------
+ Business Inteligence
+ -----------------------------------------------
+
+ get 5 best suppliers GET: http://localhost:3000/api/business/best
