@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { connectDB } from "../config/mongodb.js";
 
-// Define Student Schema for MongoDB
+// Define Orders Schema for MongoDB
 
 const ordersSchema = new mongoose.Schema({
   order_title: { 
@@ -49,7 +49,7 @@ export const migrateToMongoDB = async () => {
   const csvPath = path.join(process.cwd(), "datosPrueba.csv");
   const records = parseCSV(csvPath);
 
-  // Group courses by student_email
+  
   const ordersMap = new Map();
 
   records.forEach((record) => {
@@ -63,7 +63,7 @@ export const migrateToMongoDB = async () => {
       });
     }
 
-    // Add course to student's courses array
+    //  Add product to orders
       ordersMap.get(title).products.push({
       product_sku: record.product_sku,
       product_name: record.product_name,
@@ -74,16 +74,16 @@ export const migrateToMongoDB = async () => {
   });
 
   // Convert Map to array
-  const students = Array.from(studentsMap.values());
+  const orders = Array.from(ordersMap.values());
 
   // Clear existing data and insert new data
-  await Student.deleteMany({});
+  await Orders.deleteMany({});
   
-  const insertedStudents = await Student.insertMany(students);
+  const insertedOrders = await Orders.insertMany(orders);
   
-  console.log(`Migration complete: ${insertedStudents.length} students migrated to MongoDB`);
+  console.log(`Migration complete: ${insertedOrders.length} orders migrated to MongoDB`);
   
-  return insertedStudents.length;
+  return insertedOrders.length;
 };
 
 //------------------------------------------------------------------

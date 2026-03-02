@@ -1,6 +1,9 @@
 import { createTables, deleteTables } from "../services/createTables.js";
 import { migrateCSV } from "../services/migrateSQL.js";
+import { migrateToMongoDB } from "../services/migrateMongo.js";
 
+
+//------SQL------------------------------------------------------
 export const createTablesEndpoint = async (req,res) =>{
     try {
 
@@ -57,3 +60,22 @@ export const deleteTablesEndpoint = async (req,res) =>{
     });
   }
 }
+
+//---------Mongo-----------------------------------
+
+export const migrateEndpointMongo = async (req, res) => {
+  try {
+    const counter = await migrateToMongoDB();
+
+    res.status(200).json({
+      message: "Migración MongoDB exitosa",
+      counter
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Error en migración MongoDB"
+    });
+  }
+};
